@@ -1,0 +1,211 @@
+INFO DI CONFIGURAZIONE
+
+gazebo 11 è compatibile con ros noetic
+weBots con ros humble
+su ubuntu 22.04 jammy (che è quella che ho) non gira roos noetic ma humble
+
+
+PER VERIFICARE VERSIONE ROS HUMBLE
+echo $ROS_DISTRO
+
+PER SAPERE LA VERSIONE DI UBUNTU
+lsb_release -a
+(22.04 jammy)
+
+python3 --version
+gazebo --version 
+
+COPIARE E INCOLLARE
+control shift c
+control shift v
+
+MUOVERSI TRA I FILE
+cd (file) 
+TORNARE INDIETRO
+cd ..
+
+
+INSTALLARE
+sudo apt install ./nomefile.deb
+
+
+PER ELIMINARE CARTELLA PIENA:
+rm -r ros2_ws
+
+
+
+
+
+
+
+//////////////////////////
+PROCEDURA ROS PER LA CREAZIONE DEL WS
+
+cd /home/tuo_nome_utente
+
+mkdir ros2_ws
+
+cd ros2_ws
+
+mkdir src
+
+cd /home/tuo_nome_utente/ros2_ws
+
+# compila i pacchetti (da fare nella root del ws.. es prof_ws)
+colcon build
+
+# aggiorna per il terminale i pacchetti
+source install/setup.bash
+
+
+cd src
+
+ros2 pkg create --build-type ament_python my_package --dependencies rclpy std_msgs
+
+rifare calcon build e setup... e verificare se c'è il pacchetto di nome (....)
+ros2 pkg list
+
+STRUTTURA CORRETTA:
+
+ros2_ws/prof_ws/src  /nome_pacchetto/nome_pacchetto    /init.py
+               /altro               /setup.py e altro  /tuoi pacchetti             
+
+
+
+
+
+
+COMANDI RICORRENTI:
+
+sudo apt --fix-broken install
+
+# aggiorna la lista pacchetti
+sudo apt update
+
+Aggiorna i pacchetti 
+sudo apt upgrade
+
+all'interno di setup.py dentro il pacchetto generico trovo entry_points[ ]
+struttura:
+
+'nome comando = pacchetto.file:funzione_main'
+
+LANCIARE
+ros2 run packet_name nome comando
+
+
+
+
+
+
+
+
+LIBRERIE UTILI:
+# per la modifica on screen di script (invece di usare nano)
+sudo apt install vim
+
+# per avere più terminali on screen
+sudo apt install terminator
+
+COMANDI VIM:
+APRIRE
+vim my_node.py
+
+scrittura
+i
+
+uscire
+ESC
+
+Salvare
+:w
+
+Uscire
+:q
+
+Salvare e uscire
+:wq
+
+uscire senza salvare
+:q!
+
+
+
+
+
+
+
+PER FARE UN PUBLISHER RAPIDO (senza scrivere codice) su un determinato topic
+
+ros2 topic pub "/cmd_vel" geometry_msg/msg/Twist "{'linear' :{ FOTO TELEFONO
+
+
+
+
+
+
+//////////////////////////////////////////////////////
+GAZEBO:
+
+ros2_ws# sudo apt-get install ros-${ROS_DISTRO}-ros-gz
+sudo apt-get update
+
+PER LANCIARE GAZEBO
+ros2 launch ros_gz_sim gz_sim.launch.py
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////
+FILE URDF
+
+
+sono file xml...
+
+
+il file URDF è fatto principalmeente da tag root quali 
+robot 
+poi tag link CORPO RIGIDO
+e tag joint COLLEGAMENTO TRA LINK
+
+
+primi tag inizio script
+
+tag sdf
+tag xml
+tag model 
+
+SINTASSI IN LINEA
+<tag .... /tag>
+
+SU PIù RIGHE
+<tag>
+
+</tag>
+
+COMMENTO
+<!-- commento -->
+
+IMPORTANTI
+geometry
+box
+size
+
+collision
+inertial
+
+
+
+
+
+////////////////////
+uname -r
+nmcli device
+lsmod | grep 8821
+sudo modprobe 8821ce
+
+
+
